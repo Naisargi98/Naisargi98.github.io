@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Naisargi Patel — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; scroll-behavior:smooth; background:#faf8f4; }
+  *, *::before, *::after { box-sizing:border-box; }
+  ::selection { background:#15414b; color:#fff; }
+  a { text-decoration:none; }
+  body { font-family:'Source Sans 3',system-ui,sans-serif; color:#2b3236; background:#faf8f4; -webkit-font-smoothing:antialiased; line-height:1.6; }
+
+  /* Nav */
+  nav { position:sticky; top:0; z-index:50; background:rgba(250,248,244,0.88); backdrop-filter:saturate(140%) blur(10px); border-bottom:1px solid #e7e3da; }
+  .nav-inner { max-width:1120px; margin:0 auto; padding:0 28px; height:66px; display:flex; align-items:center; gap:24px; }
+  .nav-logo { display:flex; align-items:center; gap:11px; flex:none; border-bottom:2px solid transparent; padding:4px 0; }
+  .nav-logo-badge { width:34px; height:34px; border-radius:7px; background:#15414b; color:#fff; font-family:'Lora',serif; font-weight:600; font-size:16px; display:flex; align-items:center; justify-content:center; letter-spacing:.5px; }
+  .nav-logo-name { font-family:'Lora',serif; font-weight:600; font-size:17px; color:#2b3236; letter-spacing:.2px; }
+  .nav-spacer { flex:1; }
+  .nav-links { display:flex; align-items:center; gap:22px; overflow-x:auto; scrollbar-width:none; }
+  .nav-links::-webkit-scrollbar { display:none; }
+  .nav-link { font-size:14.5px; font-weight:500; color:#6c7378; white-space:nowrap; border-bottom:2px solid transparent; padding:3px 0; transition:color .2s ease, border-color .2s ease; }
+  .nav-link.active { color:#15414b; border-bottom-color:#9a7b34; }
+  .nav-link:hover { color:#15414b; }
+  .nav-cv { flex:none; font-size:14px; font-weight:600; color:#fff; background:#15414b; padding:9px 17px; border-radius:7px; white-space:nowrap; transition:background .2s; }
+  .nav-cv:hover { background:#1d5562; }
+
+  /* Sections */
+  .section-label { font-size:12.5px; font-weight:600; letter-spacing:1.4px; text-transform:uppercase; color:#9a7b34; }
+
+  /* Hero */
+  #top { scroll-margin-top:80px; background:#faf8f4; border-bottom:1px solid #e7e3da; }
+  .hero-inner { max-width:1120px; margin:0 auto; padding:84px 28px 76px; display:grid; grid-template-columns:1.55fr 1fr; gap:60px; align-items:center; }
+  .hero-eyebrow { display:inline-flex; align-items:center; gap:9px; font-size:12.5px; font-weight:600; letter-spacing:1.4px; text-transform:uppercase; color:#9a7b34; margin-bottom:22px; }
+  .hero-dot { width:7px; height:7px; border-radius:50%; background:#9a7b34; }
+  .hero-h1 { font-family:'Lora',serif; font-weight:600; font-size:54px; line-height:1.08; letter-spacing:-.5px; color:#1c2428; margin:0 0 20px; }
+  .hero-subtitle { font-family:'Lora',serif; font-style:italic; font-size:20px; line-height:1.45; color:#15414b; margin:0 0 22px; max-width:560px; }
+  .hero-desc { font-size:17px; line-height:1.7; color:#4a5258; margin:0 0 30px; max-width:540px; }
+  .hero-chips { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:30px; }
+  .chip { display:inline-flex; align-items:center; gap:8px; font-size:14.5px; font-weight:500; color:#2b3236; background:#fff; border:1px solid #e2ddd2; padding:8px 14px; border-radius:999px; transition:border-color .2s, color .2s; }
+  .chip:hover { border-color:#15414b; color:#15414b; }
+  .chip-dot { width:6px; height:6px; border-radius:50%; background:#15414b; }
+  .chip-dot-gold { width:6px; height:6px; border-radius:50%; background:#9a7b34; }
+  .hero-actions { display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+  .btn-primary { display:inline-flex; align-items:center; gap:9px; font-size:15px; font-weight:600; color:#fff; background:#15414b; padding:13px 24px; border-radius:8px; transition:background .2s; }
+  .btn-primary:hover { background:#1d5562; }
+  .btn-ghost { display:inline-flex; align-items:center; font-size:15px; font-weight:600; color:#15414b; padding:13px 8px; transition:color .2s; }
+  .btn-ghost:hover { color:#9a7b34; }
+  .hero-photo-wrap { justify-self:end; width:100%; }
+  .hero-photo-card { position:relative; padding:10px; background:#fff; border:1px solid #e7e3da; border-radius:18px; box-shadow:0 18px 40px -22px rgba(21,65,75,0.35); }
+  .hero-photo-card img { width:100%; height:480px; display:block; object-fit:cover; border-radius:12px; }
+  .hero-badge { position:absolute; bottom:-14px; left:50%; transform:translateX(-50%); background:#15414b; color:#fff; font-size:12px; font-weight:600; letter-spacing:.6px; text-transform:uppercase; padding:6px 16px; border-radius:999px; white-space:nowrap; }
+
+  /* About */
+  #about { scroll-margin-top:80px; background:#ffffff; border-bottom:1px solid #e7e3da; }
+  .about-inner { max-width:1120px; margin:0 auto; padding:88px 28px; display:grid; grid-template-columns:0.42fr 1fr; gap:48px; }
+  .about-h2 { font-family:'Lora',serif; font-weight:500; font-size:30px; line-height:1.32; color:#1c2428; margin:0 0 22px; max-width:760px; }
+  .about-p { font-size:17px; line-height:1.78; color:#4a5258; margin:0 0 18px; max-width:740px; }
+  .about-p:last-child { margin-bottom:0; }
+  .accent { color:#15414b; font-weight:600; }
+
+  /* Education */
+  #education { scroll-margin-top:80px; background:#faf8f4; border-bottom:1px solid #e7e3da; }
+  .edu-inner { max-width:1120px; margin:0 auto; padding:88px 28px; }
+  .section-h2 { font-family:'Lora',serif; font-weight:600; font-size:34px; color:#1c2428; margin:0 0 42px; }
+  .timeline { display:flex; flex-direction:column; gap:0; border-left:2px solid #e0dccf; margin-left:6px; }
+  .timeline-item { position:relative; padding:0 0 38px 34px; }
+  .timeline-item:last-child { padding-bottom:4px; }
+  .timeline-dot { position:absolute; left:-9px; top:4px; width:16px; height:16px; border-radius:50%; border:3px solid #faf8f4; }
+  .dot-teal { background:#15414b; }
+  .dot-gold { background:#9a7b34; }
+  .dot-grey { background:#c9c3b3; }
+  .timeline-row { display:flex; flex-wrap:wrap; gap:10px; align-items:baseline; justify-content:space-between; }
+  .timeline-h3 { font-family:'Lora',serif; font-weight:600; font-size:21px; color:#1c2428; margin:0; }
+  .badge { font-size:13.5px; font-weight:600; color:#15414b; background:#eaf1f1; padding:4px 12px; border-radius:999px; white-space:nowrap; }
+  .timeline-inst { font-size:15.5px; color:#4a5258; margin-top:6px; }
+  .tag-group { margin-top:14px; display:flex; flex-wrap:wrap; gap:7px; }
+  .tag { font-size:12.5px; color:#5a6268; background:#fff; border:1px solid #e7e3da; padding:4px 11px; border-radius:6px; }
+
+  /* Experience */
+  #experience { scroll-margin-top:80px; background:#ffffff; border-bottom:1px solid #e7e3da; }
+  .exp-inner { max-width:1120px; margin:0 auto; padding:88px 28px; }
+  .exp-cards { display:flex; flex-direction:column; gap:18px; }
+  .exp-card { background:#fbfaf6; border:1px solid #e7e3da; border-radius:14px; padding:26px 28px; }
+  .exp-card-row { display:flex; flex-wrap:wrap; gap:10px; align-items:baseline; justify-content:space-between; margin-bottom:4px; }
+  .exp-h3 { font-family:'Lora',serif; font-weight:600; font-size:21px; color:#1c2428; margin:0; }
+  .exp-company { font-size:15.5px; font-weight:600; color:#15414b; }
+  .exp-company.mb { margin-bottom:14px; }
+  .exp-p { margin:0; font-size:15.5px; line-height:1.74; color:#4a5258; }
+
+  /* Publications */
+  #publications { scroll-margin-top:80px; background:#faf8f4; border-bottom:1px solid #e7e3da; }
+  .pub-inner { max-width:1120px; margin:0 auto; padding:88px 28px; }
+  .pub-list { display:flex; flex-direction:column; gap:0; }
+  .pub-item { display:grid; grid-template-columns:88px 1fr; gap:20px; padding:26px 0; border-top:1px solid #e0dccf; }
+  .pub-item:last-child { border-bottom:1px solid #e0dccf; }
+  .pub-meta { display:flex; flex-direction:column; gap:8px; align-items:flex-start; }
+  .pub-year { font-family:'Lora',serif; font-size:15px; font-weight:600; color:#9a7b34; }
+  .pub-tag { font-size:10.5px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; padding:3px 9px; border-radius:5px; }
+  .pub-tag-paper { color:#15414b; background:#eaf1f1; }
+  .pub-tag-poster { color:#8a6d22; background:#f4ecdd; }
+  .pub-tag-speaker { color:#46505a; background:#e9e6df; }
+  .pub-title { font-size:16.5px; line-height:1.62; color:#3a4248; margin:0 0 8px; }
+  .pub-title a { color:#15414b; font-weight:600; border-bottom:1px solid #c5d4d4; transition:color .2s, border-color .2s; }
+  .pub-title a:hover { color:#9a7b34; border-color:#9a7b34; }
+  .pub-venue { font-size:14.5px; color:#6c7378; margin:0; font-style:italic; }
+
+  /* Research */
+  #research { scroll-margin-top:80px; background:#faf8f4; border-bottom:1px solid #e7e3da; }
+  .research-inner { max-width:1120px; margin:0 auto; padding:88px 28px; }
+  .research-cards { display:flex; flex-direction:column; gap:16px; }
+  .research-card { background:#fff; border:1px solid #e7e3da; border-radius:14px; padding:26px 28px; }
+  .research-card-top { display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:flex-start; }
+  .research-cat { font-size:12px; font-weight:600; letter-spacing:.6px; text-transform:uppercase; color:#9a7b34; margin-bottom:7px; }
+  .research-h3 { font-family:'Lora',serif; font-weight:600; font-size:20px; line-height:1.35; color:#1c2428; margin:0; }
+  .research-h3 a { color:#1c2428; border-bottom:1px solid #d8d3c7; transition:color .2s, border-color .2s; }
+  .research-h3 a:hover { color:#15414b; border-color:#9a7b34; }
+  .expand-btn { flex:none; cursor:pointer; font-family:'Source Sans 3',sans-serif; font-size:13.5px; font-weight:600; color:#15414b; background:#eaf1f1; border:none; padding:8px 15px; border-radius:999px; transition:background .2s, color .2s; }
+  .expand-btn.open { background:#15414b; color:#fff; }
+  .research-detail { max-height:0; opacity:0; overflow:hidden; transition:max-height .42s ease, opacity .3s ease; }
+  .research-detail p { margin:18px 0 4px; font-size:15.5px; line-height:1.72; color:#4a5258; }
+
+  /* Contact / Footer */
+  #contact { scroll-margin-top:80px; background:#15414b; color:#eaf1f1; }
+  .contact-inner { max-width:1120px; margin:0 auto; padding:84px 28px 40px; }
+  .contact-label { font-size:12.5px; font-weight:600; letter-spacing:1.4px; text-transform:uppercase; color:#c9a85a; margin-bottom:14px; }
+  .contact-h2 { font-family:'Lora',serif; font-weight:600; font-size:38px; line-height:1.18; color:#fff; margin:0 0 18px; max-width:680px; }
+  .contact-p { font-size:17px; line-height:1.7; color:#b9cdd1; margin:0 0 36px; max-width:600px; }
+  .contact-btns { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:56px; }
+  .contact-btn-white { display:inline-flex; align-items:center; gap:9px; font-size:15px; font-weight:600; color:#15414b; background:#fff; padding:12px 22px; border-radius:8px; transition:background .2s, color .2s; }
+  .contact-btn-white:hover { background:#c9a85a; color:#1c2428; }
+  .contact-btn-outline { display:inline-flex; align-items:center; gap:9px; font-size:15px; font-weight:600; color:#fff; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25); padding:12px 22px; border-radius:8px; transition:background .2s; }
+  .contact-btn-outline:hover { background:rgba(255,255,255,0.18); }
+  .footer-bar { border-top:1px solid rgba(255,255,255,0.16); padding-top:24px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; }
+  .footer-name { font-family:'Lora',serif; font-size:16px; color:#fff; }
+  .footer-copy { font-size:13.5px; color:#9fb6bb; }
+
+  /* Responsive */
+  @media (max-width:768px) {
+    .hero-inner { grid-template-columns:1fr; padding:52px 20px 48px; gap:40px; }
+    .hero-h1 { font-size:38px; }
+    .hero-subtitle { font-size:18px; }
+    .hero-photo-wrap { justify-self:center; max-width:340px; }
+    .hero-photo-card img { height:340px; }
+    .about-inner { grid-template-columns:1fr; gap:24px; padding:60px 20px; }
+    .edu-inner, .exp-inner, .pub-inner, .research-inner, .contact-inner { padding-left:20px; padding-right:20px; padding-top:60px; padding-bottom:60px; }
+    .section-h2 { font-size:28px; }
+    .contact-h2 { font-size:28px; }
+    .nav-inner { padding:0 16px; gap:16px; }
+    .nav-links { gap:14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">
+      <span class="nav-logo-badge">NP</span>
+      <span class="nav-logo-name">Naisargi Patel</span>
+    </a>
+    <div class="nav-spacer"></div>
+    <div class="nav-links">
+      <a href="#about" class="nav-link" data-navlink="about">About</a>
+      <a href="#education" class="nav-link" data-navlink="education">Education</a>
+      <a href="#experience" class="nav-link" data-navlink="experience">Experience</a>
+      <a href="#publications" class="nav-link" data-navlink="publications">Publications</a>
+      <a href="#research" class="nav-link" data-navlink="research">Research</a>
+      <a href="#contact" class="nav-link" data-navlink="contact">Contact</a>
+    </div>
+    <a href="uploads/cv-1782073057321.pdf" target="_blank" rel="noopener" class="nav-cv">Download CV</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header id="top">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">
+        <span class="hero-dot"></span>Health Economics &amp; Outcomes Research
+      </div>
+      <h1 class="hero-h1">Naisargi Patel</h1>
+      <p class="hero-subtitle">PhD Candidate in Health Economics &amp; Outcomes Research · Pharmacoepidemiology · Real-World Evidence</p>
+      <p class="hero-desc">A researcher specializing in real-world evidence, epidemiologic methods, and health-economic modeling — generating safety and efficacy evidence across oncology, cardiology, neuroscience, immunology, and infectious disease.</p>
+
+      <div class="hero-chips">
+        <a class="chip" data-email href="mailto:">
+          <span class="chip-dot"></span><span data-email-text>email</span>
+        </a>
+        <a href="https://www.linkedin.com/in/naisargimanishkumarpatel/" target="_blank" rel="noopener" class="chip">
+          <span class="chip-dot"></span>LinkedIn
+        </a>
+        <span class="chip" style="color:#6c7378; cursor:default;">
+          <span class="chip-dot-gold"></span>Boston, MA
+        </span>
+      </div>
+
+      <div class="hero-actions">
+        <a href="uploads/cv-1782073057321.pdf" target="_blank" rel="noopener" class="btn-primary">Download CV (PDF) <span>↓</span></a>
+        <a href="#contact" class="btn-ghost">Get in touch →</a>
+      </div>
+    </div>
+
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-card">
+        <img src="uploads/headshot.png" alt="Naisargi Patel">
+        <div class="hero-badge">RWE · Pharmacoepi</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about" data-nav="about">
+  <div class="about-inner">
+    <div>
+      <div class="section-label">About</div>
+    </div>
+    <div>
+      <h2 class="about-h2">PhD Candidate / Researcher in Pharmacoepidemiology &amp; Real-World Evidence.</h2>
+      <p class="about-p">My work sits at the intersection of <strong class="accent">epidemiologic methods</strong>, <strong class="accent">machine learning</strong>, and <strong class="accent">health-economic modeling</strong>. I design and execute observational studies, build predictive risk models, and construct cost-effectiveness frameworks that translate real-world effectiveness into evidence regulators and payers can act on.</p>
+      <p class="about-p">Across oncology, cardiology, neuroscience, immunology, and infectious disease, I've applied propensity-score and self-controlled designs, survival and mixed-effects modeling, network meta-analysis, and Markov microsimulation — pairing methodological rigor with a focus on questions that matter clinically and economically.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" data-nav="education">
+  <div class="edu-inner">
+    <div class="section-label" style="margin-bottom:10px;">Education</div>
+    <h2 class="section-h2">Academic background</h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="timeline-dot dot-teal"></span>
+        <div class="timeline-row">
+          <h3 class="timeline-h3">PhD, Health Economics &amp; Outcomes Research</h3>
+          <span class="badge">Sept 2025 – Present · GPA 4.0/4.0</span>
+        </div>
+        <div class="timeline-inst">Massachusetts College of Pharmacy and Health Sciences University · <em>Focus: Pharmacoepidemiology</em></div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot dot-gold"></span>
+        <div class="timeline-row">
+          <h3 class="timeline-h3">MS, Pharmaceutical Economics &amp; Policy <span style="font-weight:400; font-style:italic; font-size:16px; color:#6c7378;">(Thesis)</span></h3>
+          <span class="badge">2021 – 2023 · GPA 3.9/4.0</span>
+        </div>
+        <div class="timeline-inst">MCPHS University, Boston, MA</div>
+        <div class="tag-group">
+          <span class="tag">Epidemiology</span>
+          <span class="tag">Biostatistics</span>
+          <span class="tag">Health Service &amp; Outcomes Research</span>
+          <span class="tag">Quantitative Methods</span>
+          <span class="tag">Public Policy &amp; Research</span>
+          <span class="tag">Meta-Analysis</span>
+          <span class="tag">HEOR</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot dot-grey"></span>
+        <div class="timeline-row">
+          <h3 class="timeline-h3">BS in Pharmacy <span style="font-weight:400; font-style:italic; font-size:16px; color:#6c7378;">(Thesis)</span></h3>
+          <span class="badge">2017 – 2021 · GPA 4.0/4.0</span>
+        </div>
+        <div class="timeline-inst">Gujarat Technological University, India</div>
+        <div class="tag-group">
+          <span class="tag">Biostatistics</span>
+          <span class="tag">Pharmacy Practice</span>
+          <span class="tag">Regulatory Affairs</span>
+          <span class="tag">Pharmacokinetics</span>
+          <span class="tag">Public Policy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" data-nav="experience">
+  <div class="exp-inner">
+    <div class="section-label" style="margin-bottom:10px;">Experience</div>
+    <h2 class="section-h2">Work experience</h2>
+
+    <div class="exp-cards">
+      <div class="exp-card">
+        <div class="exp-card-row">
+          <h3 class="exp-h3">Research Intern — Real World Evidence Group</h3>
+          <span class="badge">May 2026 – Present</span>
+        </div>
+        <div class="exp-company">Microsoft Research</div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-card-row">
+          <h3 class="exp-h3">Data Science Real-World Evidence Regulatory Researcher</h3>
+          <span class="badge">June 2023 – Aug 2025</span>
+        </div>
+        <div class="exp-company mb">Johnson &amp; Johnson · Cambridge, MA</div>
+        <p class="exp-p">Generated regulatory-grade safety and efficacy evidence across oncology, cardiology, neuroscience, immunology, and infectious disease by analyzing large administrative claims, EHR, and in-house clinical-trial datasets. Applied propensity-score matched cohort and self-controlled case-series designs alongside machine-learning classifiers (random forests, gradient boosting, neural networks) and NLP for adverse-event detection and treatment-pathway characterization; conducted time-to-event survival and mixed-effects modeling with multiple imputation; and developed and validated Cox proportional-hazards and LASSO risk models using cross-validation and calibration. Constructed Markov and microsimulation health-economic models and synthesized comparative evidence through network meta-analyses and Bayesian hierarchical modeling — architecting and owning the end-to-end data pipelines and orchestration behind these analyses, with automated monitoring to ensure data quality and analytical reproducibility, and applying large language models to support epidemiologic and real-world-evidence study design.</p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-card-row">
+          <h3 class="exp-h3">Research Assistant — Patient-Reported Outcomes &amp; Epidemiology</h3>
+          <span class="badge">May 2022 – Oct 2022</span>
+        </div>
+        <div class="exp-company mb">Brigham and Women's Hospital / MCPHS University · Boston, MA</div>
+        <p class="exp-p">Standardized ICD-9/10 and CPT coding to classify geriatric oncology diagnoses and evaluated the clinical outcomes of potentially inappropriate medication using descriptive and inferential analyses. Quantified associations between potentially inappropriate medication use and adverse outcomes — including hospitalization and functional decline — to inform safer prescribing in older oncology patients. Authored and submitted an abstract on geriatric medication safety, currently under review.</p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-card-row">
+          <h3 class="exp-h3">Health Economics &amp; Evidence Synthesis Co-op</h3>
+          <span class="badge">May 2022 – Oct 2022</span>
+        </div>
+        <div class="exp-company mb">Intas Pharmaceuticals · Ahmedabad, India</div>
+        <p class="exp-p">Performed cost-utility analysis integrating real-world effectiveness and utilization data to optimize payer strategies for COVID-19 monoclonal antibody treatments, and developed a decision-analytic Markov model using NHDR data to estimate the ICER of monoclonal antibody therapy in high-risk patients. Conducted a cross-sectional cohort surveillance study quantifying the prevalence and risk factors of long-COVID symptoms, and modeled the direct healthcare costs of long-COVID management via claims-based cost analyses and multivariable regression.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications" data-nav="publications">
+  <div class="pub-inner">
+    <div class="section-label" style="margin-bottom:10px;">Publications</div>
+    <h2 class="section-h2">Papers, posters &amp; talks</h2>
+
+    <div class="pub-list">
+      <div class="pub-item">
+        <div class="pub-meta">
+          <div class="pub-year">2026</div>
+          <span class="pub-tag pub-tag-paper">Paper</span>
+        </div>
+        <div>
+          <p class="pub-title">Nguyen, N. T. H., Lituiev, D. S., Liu, Z., Kashyap, A., Jenkinson, G., Kuhl, K., Corrado, C., <strong style="color:#15414b;">Patel, N. M.</strong>, Snigdha, K., Saeedi, S., Smith, D., Baro, N., &amp; Schultz, T. (2026). <a href="https://academic.oup.com/jamia/article/33/6/1134/8559661" target="_blank" rel="noopener">Med.ai ASK: an agentic system for biomedical question answering ↗</a></p>
+          <p class="pub-venue">Journal of the American Medical Informatics Association, 33(6), 1134–1145.</p>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-meta">
+          <div class="pub-year">'25–26</div>
+          <span class="pub-tag pub-tag-paper">Paper</span>
+        </div>
+        <div>
+          <p class="pub-title">Patel, N. <strong style="color:#1c2428;">Pharmacophore Mapping — An Important Tool in Ligand- and Structure-Based Drug Design.</strong></p>
+          <p class="pub-venue">Under communication with European Chemical Bulletin (ECB), Budapest, 2025–2026.</p>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-meta">
+          <div class="pub-year">2024</div>
+          <span class="pub-tag pub-tag-speaker">Speaker</span>
+        </div>
+        <div>
+          <p class="pub-title"><strong style="color:#1c2428;">The Role of Systematic Literature Review and Meta-Analysis in Advancing Clinical Research.</strong></p>
+          <p class="pub-venue">7th Annual Real-World Evidence &amp; Analytics Conference, 2024.</p>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-meta">
+          <div class="pub-year">2023</div>
+          <span class="pub-tag pub-tag-paper">Paper</span>
+        </div>
+        <div>
+          <p class="pub-title">Arora, H., Mammi, M., <strong style="color:#15414b;">Patel, N. M.</strong>, Zyfi, D., Dasari, H. R., Yunusa, I., Simjian, T., Smith, T. R., &amp; Mekary, R. A. (2023). <strong style="color:#1c2428;">Dexamethasone and overall survival and progression-free survival in patients with newly diagnosed glioblastoma: A meta-analysis.</strong></p>
+          <p class="pub-venue">Journal of Neuro-Oncology, 166(1), 17–26. · PMID: 38151699</p>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-meta">
+          <div class="pub-year">2023</div>
+          <span class="pub-tag pub-tag-poster">Poster</span>
+        </div>
+        <div>
+          <p class="pub-title"><a href="https://www.ispor.org/docs/default-source/intl2023/mcphs-postermetformin-sulfonylurea-crc-t2dm-safetyfinal-ispor-submission04242023-pdf.pdf?sfvrsn=2398af32_0" target="_blank" rel="noopener">Comparison of Cardiac Safety Profiles of Metformin and Sulfonylureas in Colorectal Cancer Patients with Type 2 Diabetes Mellitus: A SEER-Medicare Analysis ↗</a></p>
+          <p class="pub-venue">ISPOR Conference, 2023.</p>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-meta">
+          <div class="pub-year">2023</div>
+          <span class="pub-tag pub-tag-poster">Poster</span>
+        </div>
+        <div>
+          <p class="pub-title"><a href="https://www.ispor.org/publications/journals/value-in-health/abstract/Volume-26--Supplemental-Issue-6S/PCR218-Evaluating-the-Adherence-of-Reporting-Patient-Reported-Outcomes-to-the-Consort-PRO-Extension--CONSORT-Outcomes-Extension-and-ISOQOL-Standards-Among-Aggressive-Large-B-Cell-Lymphoma-Patients--Systematic-Literature-Review-of-RCTs" target="_blank" rel="noopener">Assessment of Reporting Adherence for Patient-Reported Outcomes in Aggressive Large B-Cell Lymphoma: A Systematic Literature Review of RCTs in Compliance with CONSORT-PRO, CONSORT Outcomes Extension, and ISOQOL Standards ↗</a></p>
+          <p class="pub-venue">ISPOR Conference, 2023.</p>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-meta">
+          <div class="pub-year">2021</div>
+          <span class="pub-tag pub-tag-poster">Poster</span>
+        </div>
+        <div>
+          <p class="pub-title"><a href="https://www.rku.ac.in/document-verification?id=42q8Hz1N5g" target="_blank" rel="noopener">Pharmacophore Modeling in Drug Design ↗</a></p>
+          <p class="pub-venue">International Conference on COVID-19: Opportunities and Challenges in Pharmaceutical Research, 2021.</p>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-meta">
+          <div class="pub-year">2020</div>
+          <span class="pub-tag pub-tag-poster">Poster</span>
+        </div>
+        <div>
+          <p class="pub-title"><strong style="color:#1c2428;">Pharmacophore Mapping — An Important Tool in Ligand- and Structure-Based Drug Design.</strong></p>
+          <p class="pub-venue">International Conference on Molecular Structure &amp; Instrumental Approaches, 2020.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research" data-nav="research">
+  <div class="research-inner">
+    <div class="section-label" style="margin-bottom:10px;">Research</div>
+    <h2 class="section-h2">Featured projects</h2>
+
+    <div class="research-cards">
+      <div class="research-card">
+        <div class="research-card-top">
+          <div style="flex:1; min-width:240px;">
+            <div class="research-cat">Cost-Effectiveness · Markov Model · PSA</div>
+            <h3 class="research-h3"><a href="https://pubmed.ncbi.nlm.nih.gov/28646526/" target="_blank" rel="noopener">Health Decision Analysis ↗</a></h3>
+          </div>
+          <button class="expand-btn">Read more</button>
+        </div>
+        <div class="research-detail">
+          <p>An end-to-end cost-effectiveness analysis carried through the full decision-analytic toolkit. Built on a state-transition Markov model, the evaluation paired deterministic sensitivity analysis with probabilistic sensitivity analysis (PSA), and translated the results into cost-effectiveness acceptability curves (CEACs) and acceptability frontiers (CEAFs). I further quantified decision uncertainty and the value of additional research using expected value of perfect information (EVPI) alongside net-loss and net-benefit metrics — producing a complete view of cost-effectiveness and decision risk across willingness-to-pay thresholds.</p>
+        </div>
+      </div>
+
+      <div class="research-card">
+        <div class="research-card-top">
+          <div style="flex:1; min-width:240px;">
+            <div class="research-cat">Meta-Analysis · Brigham and Women's Hospital</div>
+            <h3 class="research-h3">Preoperative Dexamethasone &amp; Survival in Glioblastoma</h3>
+          </div>
+          <button class="expand-btn">Read more</button>
+        </div>
+        <div class="research-detail">
+          <p>A systematic review and meta-analysis evaluating whether preoperative dexamethasone affects overall and progression-free survival in newly diagnosed glioblastoma. After defining a priori inclusion/exclusion criteria and screening the literature for eligible cohorts, I extracted hazard ratios and survival endpoints, pooled effect estimates under a random-effects model, and quantified between-study heterogeneity using the I² statistic. The resulting forest plot showed a non-significant association across studies — confidence intervals crossing the null and p-values above threshold — findings that informed the published <em>Journal of Neuro-Oncology</em> manuscript.</p>
+        </div>
+      </div>
+
+      <div class="research-card">
+        <div class="research-card-top">
+          <div style="flex:1; min-width:240px;">
+            <div class="research-cat">Retrospective Cohort · SEER-Medicare Database</div>
+            <h3 class="research-h3">Cardiac Safety: Metformin vs. Sulfonylureas in CRC Patients with T2DM</h3>
+          </div>
+          <button class="expand-btn">Read more</button>
+        </div>
+        <div class="research-detail">
+          <p>A retrospective cohort study (2015–2019) in the SEER-Medicare database comparing the cardiac safety of metformin versus sulfonylureas among colorectal cancer patients with type 2 diabetes mellitus. I constructed treatment cohorts from linked claims, estimated time-to-event cardiac outcomes with Kaplan-Meier survival curves, and fit Cox proportional-hazards models adjusting for age and prior heart-failure history. The adjusted primary analysis identified statistically significant cardiac risk differences, while a secondary unadjusted analysis produced comparable outcomes — underscoring the role of confounding control in real-world safety comparisons.</p>
+        </div>
+      </div>
+
+      <div class="research-card">
+        <div class="research-card-top">
+          <div style="flex:1; min-width:240px;">
+            <div class="research-cat">Cost-Effectiveness · NHS EED · CEA Registry</div>
+            <h3 class="research-h3">Cost-Effectiveness of Antibiotics for Respiratory Infections</h3>
+          </div>
+          <button class="expand-btn">Read more</button>
+        </div>
+        <div class="research-detail">
+          <p>A cost-effectiveness and burden-of-illness evaluation of antibiotic regimens for respiratory tract infections, synthesizing evidence from the NHS EED, the CEA Registry, and PubMed. I performed structured data extraction and formal risk-of-bias assessment, then built decision-analytic cost-effectiveness models in Excel to compare incremental costs and outcomes across treatment strategies. The analysis delivered economic evaluations supporting evidence-based antibiotic resource-allocation and stewardship decisions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / FOOTER -->
+<footer id="contact" data-nav="contact">
+  <div class="contact-inner">
+    <div class="contact-label">Contact</div>
+    <h2 class="contact-h2">Let's connect on real-world evidence.</h2>
+    <p class="contact-p">Open to research collaborations, HEOR and pharmacoepidemiology projects, and conversations with PIs and teams generating evidence that moves care forward.</p>
+
+    <div class="contact-btns">
+      <a class="contact-btn-white" data-email href="mailto:"><span data-email-text>email</span></a>
+      <a href="https://www.linkedin.com/in/naisargimanishkumarpatel/" target="_blank" rel="noopener" class="contact-btn-outline">LinkedIn ↗</a>
+      <a href="uploads/cv-1782073057321.pdf" target="_blank" rel="noopener" class="contact-btn-outline">Download CV ↓</a>
+    </div>
+
+    <div class="footer-bar">
+      <div class="footer-name">Naisargi Patel</div>
+      <div class="footer-copy">Boston, MA · © 2026 Naisargi Patel. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Email obfuscation
+  const _addr = 'naisargi56' + String.fromCharCode(64) + 'gmail.com';
+  document.querySelectorAll('[data-email]').forEach((a) => {
+    const t = a.querySelector('[data-email-text]');
+    if (t) t.textContent = _addr;
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = 'mailto:' + _addr;
+    });
+  });
+
+  // Scroll spy
+  const navLinks = document.querySelectorAll('.nav-link[data-navlink]');
+  const sections = document.querySelectorAll('[data-nav]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        const id = e.target.getAttribute('data-nav');
+        navLinks.forEach((l) => {
+          l.classList.toggle('active', l.getAttribute('data-navlink') === id);
+        });
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  sections.forEach((s) => io.observe(s));
+
+  // Expandable research cards
+  document.querySelectorAll('.expand-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.research-card');
+      const detail = card.querySelector('.research-detail');
+      const open = detail.style.maxHeight && detail.style.maxHeight !== '0px';
+      if (open) {
+        detail.style.maxHeight = '0px';
+        detail.style.opacity = '0';
+        btn.textContent = 'Read more';
+        btn.classList.remove('open');
+      } else {
+        detail.style.maxHeight = detail.scrollHeight + 'px';
+        detail.style.opacity = '1';
+        btn.textContent = 'Show less';
+        btn.classList.add('open');
+      }
+    });
+  });
+</script>
+</body>
+</html>
